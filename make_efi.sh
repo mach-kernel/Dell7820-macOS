@@ -26,13 +26,14 @@ if [ -z "$TARGET_DIR" ]; then
 	TARGET_DIR="$PWD/EFI"
 fi
 
-if [ -d "$TARGET_DIR" ]; then
-	printf "OK to delete existing target directory %s?\n" $TARGET_DIR
+mkdir -p $TARGET_DIR
+
+if [ -d "$TARGET_DIR/OC" ]; then
+	printf "OK to delete existing %s?\n" "$TARGET_DIR/OC"
 	read -p "(y/n): " choice
 	case "$choice" in 
 		y|Y )
-			rm -rf $TARGET_DIR
-			mkdir $TARGET_DIR
+			rm -rf "$TARGET_DIR/OC"
 			;;
 		n|N )
 			exit 1
@@ -56,12 +57,13 @@ for filename in *.zip; do
 	unzip $filename -d "${filename%.zip}"
 done
 
+mkdir -p "$TARGET_DIR/BOOT"
 mkdir -p "$TARGET_DIR/OC"
 mkdir -p "$TARGET_DIR/OC/Drivers"
 mkdir -p "$TARGET_DIR/OC/Kexts"
 
 # OpenCore + things we need from AppleSupport
-mv OpenCore*/EFI/BOOT $TARGET_DIR
+mv OpenCore*/EFI/BOOT/BOOTx64.efi "$TARGET_DIR/BOOT"
 mv OpenCore*/EFI/OC/Tools "$TARGET_DIR/OC"
 mv OpenCore*/EFI/OC/OpenCore.efi "$TARGET_DIR/OC"
 mv AppleSupport*/Drivers/ApfsDriverLoader.efi "$TARGET_DIR/OC/Drivers"

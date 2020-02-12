@@ -34,6 +34,7 @@ I would love to hear feedback about this configuration from someone with a dual 
 - USB 2
 - Audio
 - Ethernet
+- Sleep
 
 ### Not working / unknown
 - Thunderbolt

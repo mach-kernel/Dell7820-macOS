@@ -335,11 +335,13 @@
 			<key>ProvideCustomSlide</key>
 			<true/>
 			<key>SetupVirtualMap</key>
-			<true/>
+			<false/>
 			<key>ShrinkMemoryMap</key>
 			<true/>
 			<key>SignalAppleOS</key>
 			<false/>
+			<key>RebuildAppleMemoryMap</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>DeviceProperties</key>
